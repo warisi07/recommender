@@ -4,5 +4,4 @@ model.pkl
 venv
 __pycache__
 GoogleNews-vectors-negative300-SLIM.bin.gz
-pretrained.pkl
 
