@@ -102,6 +102,7 @@ tfidf_feature = tfidf.get_feature_names_out()
 import urllib.request
 print('Downloading model...')
 pretrained_model=  urllib.request.urlopen('https://firebasestorage.googleapis.com/v0/b/recommender-2c699.appspot.com/o/pretrained.pkl?alt=media&token=d8506d5b-2a58-4373-8e77-bd046afa688a')
+pretrained_model = pickle.load(pretrained_model)
 
 model = Word2Vec(vector_size=300, window=5, min_count=1, workers=4)
 model.build_vocab(corpus)
