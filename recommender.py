@@ -5,24 +5,32 @@ import nltk
 from sklearn.metrics.pairwise import cosine_similarity
 import pandas as pd
 from nltk.tokenize import word_tokenize
+import requests
 
 # Load dataset, model and vectors
 import pickle
 
-with open('https://firebasestorage.googleapis.com/v0/b/cornell-pickup.appspot.com/o/catalog.pkl?alt=media&token=dd5f5a72-52fc-4280-8f0e-7bf02aef3edc', 'rb') as f:
-    print('Loading dataset...')
-    df = pickle.load(f)
+df =  requests.get('https://firebasestorage.googleapis.com/v0/b/cornell-pickup.appspot.com/o/catalog.pkl?alt=media&token=dd5f5a72-52fc-4280-8f0e-7bf02aef3edc')
+df = df.text
 
-with open('https://firebasestorage.googleapis.com/v0/b/cornell-pickup.appspot.com/o/vectors.pkl?alt=media&token=b87c3f06-62f0-47ee-9253-7b064e73b23b', 'rb') as f:
-    print('Loading tfidf vectors...')
-    tfidf_vectors = pickle.load(f)  
+tfidf_vectors = requests.get('https://firebasestorage.googleapis.com/v0/b/cornell-pickup.appspot.com/o/vectors.pkl?alt=media&token=b87c3f06-62f0-47ee-9253-7b064e73b23b')
+tfidf_vectors = tfidf_vectors.text
 
-with open('https://firebasestorage.googleapis.com/v0/b/cornell-pickup.appspot.com/o/model.pkl?alt=media&token=c7fc9ca0-391f-4b58-b156-87d7b08fde5b', 'rb') as f:
-    print('Loading model...')
-    model = pickle.load(f)
+model= requests.get('https://firebasestorage.googleapis.com/v0/b/cornell-pickup.appspot.com/o/model.pkl?alt=media&token=c7fc9ca0-391f-4b58-b156-87d7b08fde5b')
+model = model.text
 
 
+# with open('https://firebasestorage.googleapis.com/v0/b/cornell-pickup.appspot.com/o/catalog.pkl?alt=media&token=dd5f5a72-52fc-4280-8f0e-7bf02aef3edc', 'rb') as f:
+#     print('Loading dataset...')
+#     df = pickle.load(f)
 
+# with open('https://firebasestorage.googleapis.com/v0/b/cornell-pickup.appspot.com/o/vectors.pkl?alt=media&token=b87c3f06-62f0-47ee-9253-7b064e73b23b', 'rb') as f:
+#     print('Loading tfidf vectors...')
+#     tfidf_vectors = pickle.load(f)  
+
+# with open('https://firebasestorage.googleapis.com/v0/b/cornell-pickup.appspot.com/o/model.pkl?alt=media&token=c7fc9ca0-391f-4b58-b156-87d7b08fde5b', 'rb') as f:
+#     print('Loading model...')
+#     model = pickle.load(f)
 
 df = pd.DataFrame(df, columns=['subject code', 'course number', 
                            'course title', 'course description'])
