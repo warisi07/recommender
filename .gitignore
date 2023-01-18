@@ -4,4 +4,5 @@ catalog.pkl
 .DS_Store
 venv
 __pycache__
+GoogleNews-vectors-negative300-SLIM.bin.gz
 

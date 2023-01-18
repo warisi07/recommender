@@ -16,16 +16,23 @@ function App() {
 	const [page, setPage] = React.useState(1);
 
 	const [loadingText, setLoadingText] = React.useState(
-		'Loading courses...this might take a minute'
+		'Loading courses...this might take a minute.'
 	);
 
 	function generateLoadingText() {
 		if (loading) {
 			setTimeout(() => {
 				if (loading) {
-					setLoadingText('Hold on...any second now');
+					setLoadingText('Hold on...generating recommendations...');
 				}
 			}, 10000);
+			setTimeout(() => {
+				if (loading) {
+					setLoadingText(
+						'This is taking longer than expected...any minute now'
+					);
+				}
+			}, 15000);
 			return <p className='m-0'>{loadingText}</p>;
 		}
 	}
