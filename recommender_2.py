@@ -99,9 +99,9 @@ tfidf_list = dict(zip(tfidf.get_feature_names_out(), list(tfidf.idf_)))
 tfidf_feature = tfidf.get_feature_names_out()
 
 # Using google pretrained Word2vec model with over 2 billion words
+import urllib.request
 print('Loading pretrained model...')
-with open('./pretrained.pkl', 'rb') as f:
-    pretrained_model = pickle.load(f)
+pretrained_model=  urllib.request.urlopen('https://firebasestorage.googleapis.com/v0/b/recommender-2c699.appspot.com/o/pretrained.pkl?alt=media&token=d8506d5b-2a58-4373-8e77-bd046afa688a')
 
 model = Word2Vec(vector_size=300, window=5, min_count=1, workers=4)
 model.build_vocab(corpus)
