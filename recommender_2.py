@@ -100,10 +100,8 @@ tfidf_feature = tfidf.get_feature_names_out()
 
 # Using google pretrained Word2vec model with over 2 billion words
 print('Loading pretrained model...')
-import urllib.request
-pretrained_model = urllib.request.urlopen('https://firebasestorage.googleapis.com/v0/b/recommender-2c699.appspot.com/o/pretrained.pkl?alt=media&token=d8506d5b-2a58-4373-8e77-bd046afa688a')
-pretrained_model = KeyedVectors.load_word2vec_format(pretrained_model, binary=True)
-# pretrained_model = KeyedVectors.load_word2vec_format("./GoogleNews-vectors-negative300-SLIM.bin.gz", binary=True)
+with open('./pretrained.pkl', 'rb') as f:
+    pretrained_model = pickle.load(f)
 
 model = Word2Vec(vector_size=300, window=5, min_count=1, workers=4)
 model.build_vocab(corpus)
