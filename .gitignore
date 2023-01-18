@@ -2,4 +2,6 @@ vectors.pkl
 model.pkl
 catalog.pkl
 .DS_Store
+venv
+__pycache__
 

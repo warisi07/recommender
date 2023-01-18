@@ -9,17 +9,19 @@ from nltk.tokenize import word_tokenize
 # Load dataset, model and vectors
 import pickle
 
-with open('./catalog.pkl', 'rb') as f:
+with open('https://firebasestorage.googleapis.com/v0/b/cornell-pickup.appspot.com/o/catalog.pkl?alt=media&token=dd5f5a72-52fc-4280-8f0e-7bf02aef3edc', 'rb') as f:
     print('Loading dataset...')
     df = pickle.load(f)
 
-with open('./model.pkl', 'rb') as f:
+with open('https://firebasestorage.googleapis.com/v0/b/cornell-pickup.appspot.com/o/vectors.pkl?alt=media&token=b87c3f06-62f0-47ee-9253-7b064e73b23b', 'rb') as f:
+    print('Loading tfidf vectors...')
+    tfidf_vectors = pickle.load(f)  
+
+with open('https://firebasestorage.googleapis.com/v0/b/cornell-pickup.appspot.com/o/model.pkl?alt=media&token=c7fc9ca0-391f-4b58-b156-87d7b08fde5b', 'rb') as f:
     print('Loading model...')
     model = pickle.load(f)
 
-with open('./vectors.pkl', 'rb') as f:
-    print('Loading tfidf vectors...')
-    tfidf_vectors = pickle.load(f)  
+
 
 
 df = pd.DataFrame(df, columns=['subject code', 'course number', 
